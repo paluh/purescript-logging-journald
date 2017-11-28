@@ -1,4 +1,4 @@
-# purescript-logger-journald
+# purescript-logging-journald
 
 A glue function which connects `purescript-logging` and `purescript-systemd-journald`. I'm not sure if it is worth publishing...
 
