@@ -1,5 +1,6 @@
 module Control.Logger.Journald
   ( Level(..)
+  , log
   , logger
   , module Node.Systemd.Journald
   )
@@ -32,24 +33,34 @@ logger ∷
   → Lens' state (Maybe Journald)
   → Logger m (Record (level ∷ Level, message ∷ String, fields ∷ Record fields | r))
 logger defaultFields journaldL =
-  Logger log
+  Logger log'
  where
-  log r = do
+  log' r = do
     ml ← use journaldL
     case ml of
-      Just l → log' r l
+      Just j → log j r
       Nothing → do
-        l ← liftEff (journald defaultFields)
-        journaldL ?= l
-        log' r l
+        j ← liftEff (journald defaultFields)
+        journaldL ?= j
+        log j r
 
-  log' r l =
-    case r.level of
-      Emerg → liftEff $ emerg l r.message r.fields
-      Alert → liftEff $ alert l r.message r.fields
-      Crit → liftEff $ crit l r.message r.fields
-      Err → liftEff $ err l r.message r.fields
-      Warning → liftEff $ warning l r.message r.fields
-      Notice → liftEff $ notice l r.message r.fields
-      Info → liftEff $ info l r.message r.fields
-      Debug → liftEff $ debug l r.message r.fields
+log ∷ ∀ eff fields m r
+  .  MonadEff (systemd ∷ SYSTEMD | eff) m
+  ⇒ Journald
+  → Record
+    ( level :: Level
+    , message :: String
+    , fields :: Record fields
+    | r
+    )
+  → m Unit
+log journald r =
+  case r.level of
+    Emerg → liftEff $ emerg journald r.message r.fields
+    Alert → liftEff $ alert journald r.message r.fields
+    Crit → liftEff $ crit journald r.message r.fields
+    Err → liftEff $ err journald r.message r.fields
+    Warning → liftEff $ warning journald r.message r.fields
+    Notice → liftEff $ notice journald r.message r.fields
+    Info → liftEff $ info journald r.message r.fields
+    Debug → liftEff $ debug journald r.message r.fields
