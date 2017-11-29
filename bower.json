@@ -1,4 +1,5 @@
 {
+  "license": "BSD-3-Clause",
   "name": "purescript-logging-journald",
   "ignore": [
     "**/.*",
@@ -10,7 +11,6 @@
     "purescript-prelude": "^3.1.1",
     "purescript-console": "^3.0.0",
     "purescript-systemd-journald": "^0.1.1",
-    "purescript-profunctor-lenses": "^3.8.0",
     "purescript-logging": "^2.0.0"
   },
   "devDependencies": {
