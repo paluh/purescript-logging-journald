@@ -18,8 +18,12 @@ A glue function which connects `purescript-logging` and `purescript-systemd-jour
   ```
 
 
-You can also use `logger'` if you have problems with `Logger` monad type inference:
+You can also use `logger'` constructor if you have problems with `Logger` monad type inference:
 
   ```purescript
     l' ← logger' (journald {})
   ```
+
+## Log levels
+
+There are `Ord` and `Eq` instances provided for `Level` type so you can do filtering like `cfilter (\e → e.level < Debug)`.
