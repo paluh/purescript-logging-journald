@@ -34,6 +34,13 @@ logger ∷
   → JournaldLogger m fields
 logger j = Logger (\r → log j r)
 
+logger' ∷
+  ∀ eff fields m
+  . MonadEff (systemd ∷ SYSTEMD | eff) m
+  ⇒ m Journald
+  → m (JournaldLogger m fields)
+logger' j = logger <$> j
+
 log ∷ ∀ eff fields m
   .  MonadEff (systemd ∷ SYSTEMD | eff) m
   ⇒ Journald
