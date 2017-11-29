@@ -26,4 +26,4 @@ You can also use `logger'` constructor if you have problems with `Logger` monad 
 
 ## Log levels
 
-There are `Ord` and `Eq` instances provided for `Level` type so you can do filtering like `cfilter (\e → e.level < Debug)`.
+There are `Ord` and `Eq` instances provided for `Level` type so you can do filtering like `cfilter (\e → e.level > Warning)`.
