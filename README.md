@@ -1,6 +1,6 @@
 # purescript-logging-journald
 
-A glue function which connects `purescript-logging` and `purescript-systemd-journald`. I'm not sure if it is worth publishing...
+A drop of glue between `purescript-logging` and `purescript-systemd-journald`.
 
 ## Usage
 
@@ -17,13 +17,16 @@ A glue function which connects `purescript-logging` and `purescript-systemd-jour
       log l { level: Debug, message: "second", fields: {extraInfo: "extra2"} }
   ```
 
-
 You can also use `logger'` constructor if you have problems with `Logger` monad type inference:
 
   ```purescript
     l' ← logger' (journald {})
   ```
 
+You can provide extra fields (through `fields` attribute) - `purescript-systemd-journald` accepts nearly anything there. For more info please consult it's docs.
+
+
 ## Log levels
 
 There are `Ord` and `Eq` instances provided for `Level` type so you can do filtering like `cfilter (\e → e.level > Warning)`.
+
