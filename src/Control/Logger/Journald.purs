@@ -1,7 +1,9 @@
 module Control.Logger.Journald
-  ( Level(..)
+  ( JournaldLogger
+  , Level(..)
   , log
   , logger
+  , LogEntry
   , module Node.Systemd.Journald
   )
   where
