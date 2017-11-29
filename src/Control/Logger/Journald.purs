@@ -13,17 +13,24 @@ import Prelude
 
 import Control.Logger (Logger(..))
 import Control.Monad.Eff.Class (class MonadEff, liftEff)
+import Data.Generic.Rep (class Generic)
+import Data.Generic.Rep.Show (genericShow)
 import Node.Systemd.Journald (Journald, SYSTEMD, alert, crit, debug, emerg, err, info, journald, notice, warning)
 
 data Level
-  = Emerg
-  | Alert
-  | Crit
-  | Err
-  | Warning
-  | Notice
+  = Debug
   | Info
-  | Debug
+  | Notice
+  | Warning
+  | Err
+  | Crit
+  | Alert
+  | Emerg
+derive instance genericLevel ∷ Generic Level _
+derive instance eqLevel ∷ Eq Level
+derive instance ordLevel ∷ Ord Level
+instance showLevel ∷ Show Level where
+  show = genericShow
 
 type LogEntry fields = { level ∷ Level, message ∷ String, fields ∷ Record fields }
 type JournaldLogger m fields = Logger m (LogEntry fields)
