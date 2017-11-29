@@ -1,7 +1,6 @@
 module Control.Logger.Journald
   ( JournaldLogger
   , Level(..)
-  , log
   , logger
   , logger'
   , LogEntry
@@ -40,7 +39,7 @@ logger ∷
   . MonadEff (systemd ∷ SYSTEMD | eff) m
   ⇒ Journald
   → JournaldLogger m fields
-logger j = Logger (\r → log j r)
+logger j = Logger (\r → logJournald j r)
 
 logger' ∷
   ∀ eff fields m
@@ -49,12 +48,12 @@ logger' ∷
   → m (JournaldLogger m fields)
 logger' j = logger <$> j
 
-log ∷ ∀ eff fields m
+logJournald ∷ ∀ eff fields m
   .  MonadEff (systemd ∷ SYSTEMD | eff) m
   ⇒ Journald
   → LogEntry fields
   → m Unit
-log journald r =
+logJournald journald r =
   case r.level of
     Emerg → liftEff $ emerg journald r.message r.fields
     Alert → liftEff $ alert journald r.message r.fields
@@ -64,3 +63,4 @@ log journald r =
     Notice → liftEff $ notice journald r.message r.fields
     Info → liftEff $ info journald r.message r.fields
     Debug → liftEff $ debug journald r.message r.fields
+
