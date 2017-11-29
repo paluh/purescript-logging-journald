@@ -16,3 +16,10 @@ A glue function which connects `purescript-logging` and `purescript-systemd-jour
       log l { level: Emerg, message: "first", fields: {extraInfo: "extra1"} }
       log l { level: Debug, message: "second", fields: {extraInfo: "extra2"} }
   ```
+
+
+You can also use `logger'` if you have problems with `Logger` monad type inference:
+
+  ```purescript
+    l' ← logger' (journald {})
+  ```
