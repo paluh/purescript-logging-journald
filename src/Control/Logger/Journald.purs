@@ -22,22 +22,20 @@ data Level
   | Info
   | Debug
 
+type LogEntry fields = { level ∷ Level, message ∷ String, fields ∷ Record fields }
+type JournaldLogger m fields = Logger m (LogEntry fields)
+
 logger ∷
-  ∀ eff fields m r
+  ∀ eff fields m
   . MonadEff (systemd ∷ SYSTEMD | eff) m
   ⇒ Journald
-  → Logger m (Record (level ∷ Level, message ∷ String, fields ∷ Record fields | r))
+  → JournaldLogger m fields
 logger j = Logger (\r → log j r)
 
-log ∷ ∀ eff fields m r
+log ∷ ∀ eff fields m
   .  MonadEff (systemd ∷ SYSTEMD | eff) m
   ⇒ Journald
-  → Record
-    ( level :: Level
-    , message :: String
-    , fields :: Record fields
-    | r
-    )
+  → LogEntry fields
   → m Unit
 log journald r =
   case r.level of
