@@ -4,9 +4,6 @@ A glue function which connects `purescript-logging` and `purescript-systemd-jour
 
 ## Usage
 
-Minimal, working example copied from `tests/Main.purs`:
-
-
   ```purescript
     import Control.Logger (log)
     import Control.Logger.Journald (Level(Debug, Emerg), SYSTEMD, journald, logger)
