@@ -10,9 +10,6 @@ import Prelude
 
 import Control.Logger (Logger(..))
 import Control.Monad.Eff.Class (class MonadEff, liftEff)
-import Control.Monad.State (class MonadState)
-import Data.Lens (Lens', use, (?=))
-import Data.Maybe (Maybe(Nothing, Just))
 import Node.Systemd.Journald (Journald, SYSTEMD, alert, crit, debug, emerg, err, info, journald, notice, warning)
 
 data Level
@@ -26,23 +23,11 @@ data Level
   | Debug
 
 logger ∷
-  ∀ defaultFields eff fields m r state
+  ∀ eff fields m r
   . MonadEff (systemd ∷ SYSTEMD | eff) m
-  ⇒ MonadState state m
-  ⇒ Record defaultFields
-  → Lens' state (Maybe Journald)
+  ⇒ Journald
   → Logger m (Record (level ∷ Level, message ∷ String, fields ∷ Record fields | r))
-logger defaultFields journaldL =
-  Logger log'
- where
-  log' r = do
-    ml ← use journaldL
-    case ml of
-      Just j → log j r
-      Nothing → do
-        j ← liftEff (journald defaultFields)
-        journaldL ?= j
-        log j r
+logger j = Logger (\r → log j r)
 
 log ∷ ∀ eff fields m r
   .  MonadEff (systemd ∷ SYSTEMD | eff) m
