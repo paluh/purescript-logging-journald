@@ -3,6 +3,7 @@ module Control.Logger.Journald
   , Level(..)
   , log
   , logger
+  , logger'
   , LogEntry
   , module Node.Systemd.Journald
   )
