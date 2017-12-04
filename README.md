@@ -23,7 +23,7 @@ There is also `logger'` constructor if you want to work in given monad:
     l' ← logger' (journald {})
   ```
 
-You can provide extra fields (through `fields` attribute) - `purescript-systemd-journald` accepts nearly anything there. For more info please consult it's docs.
+You can provide extra fields (through `fields` attribute) - `purescript-systemd-journald` accepts nearly anything there. For more info please consult its docs.
 
 
 ## Log levels
