@@ -17,7 +17,7 @@ A drop of glue between `purescript-logging` and `purescript-systemd-journald`.
       log l { level: Debug, message: "second", fields: {extraInfo: "extra2"} }
   ```
 
-There is also `logger'` constructor if you want to work in given monad:
+There is also `logger'` shortcut if you want to work in the given monad:
 
   ```purescript
     l' ← logger' (journald {})
