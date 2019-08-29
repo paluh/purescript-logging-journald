@@ -1,38 +1,18 @@
 module Control.Logger.Journald
-  ( JournaldLogger
-  , Level(..)
-  , logger
+  ( logger
   , logger'
-  , LogEntry
   , module Node.Systemd.Journald
+  , module Types
   )
   where
 
 import Prelude
 
 import Control.Logger (Logger(..))
-import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Show (genericShow)
+import Control.Logger.Journald.Types (JournaldLogger, Level(..), LogEntry)
+import Control.Logger.Journald.Types (JournaldLogger, Level(..), LogEntry) as Types
 import Effect.Class (class MonadEffect, liftEffect)
 import Node.Systemd.Journald (Journald, alert, crit, debug, emerg, err, info, notice, warning)
-
-data Level
-  = Debug
-  | Info
-  | Notice
-  | Warning
-  | Err
-  | Crit
-  | Alert
-  | Emerg
-derive instance genericLevel ∷ Generic Level _
-derive instance eqLevel ∷ Eq Level
-derive instance ordLevel ∷ Ord Level
-instance showLevel ∷ Show Level where
-  show = genericShow
-
-type LogEntry fields = { level ∷ Level, message ∷ String, fields ∷ Record fields }
-type JournaldLogger m fields = Logger m (LogEntry fields)
 
 logger ∷
   ∀ fields m
