@@ -1,0 +1,22 @@
+{
+  "name": "purescript-logging-journald",
+  "license": [
+    "BSD-3-Clause"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paluh/purescript-logging-journald.git"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-effect": "^v4.0.0",
+    "purescript-logging": "^v3.0.0",
+    "purescript-prelude": "^v6.0.0",
+    "purescript-systemd-journald": "^0.3.0"
+  }
+}
