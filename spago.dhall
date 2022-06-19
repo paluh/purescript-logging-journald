@@ -1,5 +1,5 @@
 { name = "logging-journald"
-, dependencies = [ "effect", "logging", "prelude", "systemd-journald" ]
+, dependencies = [ "effect", "logging", "prelude" ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
 , license = "BSD-3-Clause"
