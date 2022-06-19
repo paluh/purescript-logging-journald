@@ -43,4 +43,3 @@ logJournald journald r =
     Notice -> liftEffect $ notice journald r.message r.fields
     Info -> liftEffect $ info journald r.message r.fields
     Debug -> liftEffect $ debug journald r.message r.fields
-

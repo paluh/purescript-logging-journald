@@ -16,10 +16,10 @@ data Level
   | Alert
   | Emerg
 
-derive instance genericLevel :: Generic Level _
-derive instance eqLevel :: Eq Level
-derive instance ordLevel :: Ord Level
-instance showLevel :: Show Level where
+derive instance Generic Level _
+derive instance Eq Level
+derive instance Ord Level
+instance Show Level where
   show = genericShow
 
 type LogEntry fields = { level :: Level, message :: String, fields :: Record fields }

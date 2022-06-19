@@ -14,7 +14,7 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "prelude": "^0.8.2",
+    "purescript-prelude": "^0.8.2",
     "systemd": "^0.4.0",
     "systemd-journald": "^1.5.2"
   }
