@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "purescript-effect": "^4.0.0",
+    "purescript-foldable-traversable": "^6.0.0",
     "purescript-logging": "^3.0.0",
     "purescript-prelude": "^6.0.0",
     "purescript-systemd-journald": "v0.3.0"
