@@ -18,7 +18,8 @@
     "purescript-foldable-traversable": "^6.0.0",
     "purescript-logging": "^3.0.0",
     "purescript-prelude": "^6.0.0",
-    "purescript-systemd-journald": "v0.3.0"
+    "purescript-systemd-journald": "v0.3.0",
+    "purescript-transformers": "^6.0.0"
   },
   "resolutions": {
     "purescript-effect": "^4.0.0",
@@ -35,6 +36,13 @@
     "purescript-distributive": "^6.0.0",
     "purescript-orders": "^6.0.0",
     "purescript-invariant": "^6.0.0",
-    "purescript-type-equality": "^4.0.1"
+    "purescript-type-equality": "^4.0.1",
+    "purescript-transformers": "^6.0.0",
+    "purescript-exceptions": "^6.0.0",
+    "purescript-lazy": "^6.0.0",
+    "purescript-tailrec": "^6.0.0",
+    "purescript-partial": "^4.0.0",
+    "purescript-refs": "^6.0.0",
+    "purescript-unfoldable": "^6.0.0"
   }
 }
