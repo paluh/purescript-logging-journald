@@ -14,9 +14,13 @@
     "output"
   ],
   "dependencies": {
-    "purescript-effect": "^v4.0.0",
-    "purescript-logging": "^v3.0.0",
-    "purescript-prelude": "^v6.0.0",
-    "purescript-systemd-journald": "^0.3.0"
+    "purescript-effect": "^4.0.0",
+    "purescript-logging": "^3.0.0",
+    "purescript-prelude": "^6.0.0",
+    "purescript-systemd-journald": "v0.3.0"
+  },
+  "resolutions": {
+    "purescript-effect": "^4.0.0",
+    "purescript-prelude": "^6.0.0"
   }
 }
